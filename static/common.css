@@ -594,7 +594,6 @@ pre {
 .pagination {
   margin: 0 0 35px;
   text-align: center;
-  display: block;
 }
 .pagination a {
   text-align: center;
@@ -881,4 +880,17 @@ pre {
   width: 30px;
   height: 30px;
   line-height: 30px;
+}
+.booklist .thumbnail .caption { 
+  text-align:center;
+}
+
+.booklist .thumbnail { 
+  height: 400px;
+}
+
+@media (min-width: 1200px){
+  .form-inline .form-control#search{
+    width:400px;
+  }
 }
