@@ -1,16 +1,31 @@
 # -*- coding:utf-8 -*-
 from flask import Flask, session, redirect, url_for, render_template,request
 from optparse import OptionParser
-import util
 import re
+import mysqlspi
 app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
     pageNo = request.args.get('page', '')
-    imagelist=util.scan_files_no_root("static/data/",slug="")
-    print imagelist
-    return   render_template('index.html',imagelist=imagelist)
+    qstr = request.args.get('q', '')
+    cotegory = request.args.get('c', '')
+    if(not pageNo):
+        pageNo=1
+    booklist=mysqlspi.query_booklist(int(pageNo),qstr,cotegory)
+    return   render_template('index.html',booklist=booklist,page='index')
+
+@app.route('/about')
+def about():
+    booklist=mysqlspi.query_random()
+    return   render_template('about.html',page='about')
+
+@app.route('/meetup')
+def meet_up():
+    booklist=mysqlspi.query_random()
+    return   render_template('meet.html',booklist=booklist,page='meet')
+
+
 
 @app.route('/tags')
 def route_tags():

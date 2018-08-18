@@ -886,7 +886,16 @@ pre {
 }
 
 .booklist .thumbnail { 
-  height: 400px;
+  height: 300px;
+  position: relative;
+}
+
+.top-tags{
+  color:  #dfd7d7;
+}
+.top-tags a {
+  color: #fff!important;
+  text-decoration: underline;
 }
 
 @media (min-width: 1200px){
@@ -894,3 +903,4 @@ pre {
     width:400px;
   }
 }
+

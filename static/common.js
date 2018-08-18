@@ -87,3 +87,75 @@ var themeApp = {
 $(document).ready(function(){
   themeApp.init();
 });
+
+function previousPage(pageNum){
+	if(pageNum<=1){
+		return 
+	}
+	pageNum--;
+	var searchText =getQueryString("q");
+	var cotegoryid =getQueryString("c");
+	var gotoStr="/?page="+pageNum;
+	if(searchText){
+		gotoStr+="&q="+searchText;
+	}
+	if(cotegoryid){
+		gotoStr+="&c="+cotegoryid;
+	}
+	window.location.href=gotoStr;
+}
+
+
+function nextPage(pageNum,total){
+	if(pageNum>=total){
+		return 
+	}
+	pageNum++;
+	var searchText =getQueryString("q");
+	var cotegoryid =getQueryString("c");
+	var gotoStr="/?page="+pageNum;
+	if(searchText){
+		gotoStr+="&q="+searchText;
+	}
+	if(cotegoryid){
+		gotoStr+="&c="+cotegoryid;
+	}
+	window.location.href=gotoStr;
+}
+function gotoPageNum(total){
+	var goPageNum = $("#goPageNum").val();
+	if(goPageNum>=total||goPageNum<1){
+		return 
+	}
+	var searchText =getQueryString("q");
+	var cotegoryid =getQueryString("c");
+	var gotoStr="/?page="+goPageNum;
+	if(searchText){
+		gotoStr+="&q="+searchText;
+	}
+	if(cotegoryid){
+		gotoStr+="&c="+cotegoryid;
+	}
+	window.location.href=gotoStr;
+}
+
+//获取url中的参数
+function getQueryString(name) {
+	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); // 匹配目标参数
+	var result = window.location.search.substr(1).match(reg); // 对querystring匹配目标参数
+	if (result != null) {
+	  return decodeURIComponent(result[2]);
+	} else {
+	  return null;
+	}
+  }
+
+  //获取URL地址
+  function getUrlPath(){
+	  // 这部分代码就是处理标题兼容问题的。
+	  // 由于在Chrome window.location.origin 属性是支持的，但是在IE11不支持，会导致无法正常翻页。
+	  var loc = window.location;
+	  var portStr = "";
+	  if(loc.port != 80){ portStr = ":"+loc.port; }
+	  return loc.protocol + "//" +loc.hostname + portStr + loc.pathname;
+  }  
