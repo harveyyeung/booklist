@@ -13,26 +13,24 @@ def randomChar(len):
 
 def scan_files(directory,prefix=None,postfix=None):
     files_list=[]
-    
+
     for root, sub_dirs, files in os.walk(directory):
         for special_file in files:
             if postfix:
                 if special_file.endswith(postfix):
-                    files_list.append(os.path.join(root,special_file))
+                    files_list.append(special_file)
             elif prefix:
                 if special_file.startswith(prefix):
-                    files_list.append(os.path.join(root,special_file))
+                    files_list.append(special_file)
             else:
-                files_list.append(os.path.join(root,special_file))
+                files_list.append(special_file)
                             
     return files_list
 
 def scan_files_no_root(directory,prefix=None,postfix=None,slug=None):
     files_list=[]
-    path=unicode(directory,'utf-8')
-    for root, sub_dirs, files in os.walk(path):
+    for root, sub_dirs, files in os.walk(directory):
         for special_file in files:
-            print special_file
             if postfix:
                 if special_file.endswith(postfix):
                     files_list.append(os.path.join(slug,special_file))
@@ -43,4 +41,3 @@ def scan_files_no_root(directory,prefix=None,postfix=None,slug=None):
                 files_list.append(os.path.join(slug,special_file))
                             
     return files_list
-    

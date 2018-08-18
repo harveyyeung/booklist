@@ -3,12 +3,16 @@ import numpy as np
 from scipy import ndimage
 import util
 
-dir = "./static/data"
+dir = "./static/book"
 
-imagelist = util.scan_files_no_root(dir)
+imagelist = util.scan_files_no_root(dir,slug="")
 for imageinfo in imagelist:
     image = np.array(ndimage.imread(dir+'/'+imageinfo, flatten=False))
-    print(image.shape)
+
     my_image =scipy.misc.imresize(image, size=(200, 200))
-    print(my_image.shape)
-    scipy.misc.toimage(my_image).save("static/image/"+imageinfo)
+    try:
+        scipy.misc.toimage(my_image).save("static/image/"+imageinfo)
+    except BaseException:
+        print(imageinfo)
+    
+
