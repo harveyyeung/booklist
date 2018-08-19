@@ -124,7 +124,7 @@ function nextPage(pageNum,total){
 }
 function gotoPageNum(total){
 	var goPageNum = $("#goPageNum").val();
-	if(goPageNum>=total||goPageNum<1){
+	if(goPageNum>total||goPageNum<1){
 		return 
 	}
 	var searchText =getQueryString("q");
