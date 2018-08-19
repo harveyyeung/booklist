@@ -1,0 +1,33 @@
+{% include 'header.html' %}
+    <section>
+        <div class="container "  style="background-color: indianred;padding-top: 10px;">
+                <div class="row"><div class="col-md-12 main-content" style="text-align: center;"><img src="https://harveyyeung.github.io/images/book1/icon/xiazai.png" style="height: 100px;padding: 10px;"></div></div>
+            <div class="row">
+               <div class="col-md-9 main-content">
+                <div class="row">
+                     {% for book in booklist %}
+                      <div class="col-sm-6 col-md-3">
+                            <div class="thumbnail">
+                                <a  href="{{book['ctno']}}" target="_blank">
+                              <img  src="https://harveyyeung.github.io/images/book1/{{book['image']}}.jpg" data-holder-rendered="true" style="height: 200px;width: 170px; display: block;  border: 1px solid #a0a0a0;">
+                                </a>
+                              <div class="caption">
+                                <h5>{{book['title']}}</h5>
+                                <p></p>
+                              </div>
+                              <a class="btn-default btn-xs" style="
+                              bottom: 2px;
+                              right: 5px;
+                              position: absolute;" href="{{book['ctno']}}" target="_blank" role="button">网盘</a>
+                            </div>
+                        </div>                 
+                      {% endfor %}
+                  </div>
+               </div>
+               {% include 'sidebar.html' %}
+            </div>
+        </div>
+    </section>
+    {% include 'footer.html' %}
+</body>
+</html>

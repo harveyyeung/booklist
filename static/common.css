@@ -124,7 +124,7 @@ pre {
 ====================================================*/
 .main-header {
   text-align: center;
-  padding: 42px 0;
+  /* padding: 42px 0; */
   background: #ffffff;
 }
 .main-header .branding {
@@ -887,14 +887,15 @@ pre {
 
 .booklist .thumbnail { 
   height: 300px;
+  box-shadow: 3px 5px 5px rgba(34,25,25,0.4);
   position: relative;
 }
 
 .top-tags{
-  color:  #dfd7d7;
+  color: #337ab7;
 }
 .top-tags a {
-  color: #fff!important;
+  /* color: #337ab7!important; */
   text-decoration: underline;
 }
 

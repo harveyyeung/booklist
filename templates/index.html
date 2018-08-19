@@ -1,42 +1,41 @@
 {% include 'header.html' %}
     <section>
-        <div class="container "  style="background-color: indianred;padding-top: 10px;">
-            <div class="row"><div class="col-md-12 main-content" style="text-align: center;"><img src="static/xiazai.png" style="height: 100px;padding: 10px;"></div></div>
-           
+        <div class="container "  style="background-color: #eee">
+            <div class="row"><div class="col-md-12 main-content" style="text-align: center;"><img src="https://harveyyeung.github.io/images/book1/icon/qixi.png" style="height: 80px;padding: 10px;"></div></div>
             <div class="row text-center">
                 <form role="search" class="form-inline" action="/" method="get" >
                     <div class="form-group">
                     <input id="searchText" name="q" value="" placeholder="书名关键字" type="text" class="form-control">
                     </div>
                     <button class="btn  btn-default  btn-lg" type="submit">
-                            <i class="glyphicon glyphicon-search" aria-hidden="true"></i>
+                        <i class="glyphicon glyphicon-search" aria-hidden="true"></i>
                     </button>
                     <div class="top-tags" >
-                            <span>热门标签:</span>
-                            <a href="/?c=1">IT·互联网</a>
+                        <span>热门标签:</span>
+                        <a href="/?c=1">IT·互联网</a>
                    </div>
                 </form>
-         
             </div>
             <div class="row">
-               <div class="col-md-9 main-content">
+               <div class="col-md-12 main-content">
                 <div class="row">
-                       
                      {% for book in booklist["list"] %}
-                      <div class="col-sm-6 col-md-3">
+                      <div class="col-sm-6 col-md-2">
                             <div class="thumbnail">
-                                <a href="#">
-                              <img  src="static/image/{{book['image']}}.jpg" data-holder-rendered="true" style="height: 200px;width: 170px; display: block;  border: 1px solid #a0a0a0;">
+                                <a  href="{{book['ctno']}}" target="_blank">
+                              <img  src="https://harveyyeung.github.io/images/book1/{{book['image']}}.jpg" data-holder-rendered="true" style="height: 200px;width: 170px; display: block;  border: 1px solid #a0a0a0;">
                                 </a>
                               <div class="caption">
-                                <h5>{{book['title']}}</h5>
+                                <h6>{{book['title']}}</h6>
                                 <p></p>
                        
                               </div>
                               <a class="btn-default btn-xs" style="
                               bottom: 2px;
                               right: 5px;
-                              position: absolute;" href="{{book['ctno']}}" target="_blank" role="button">下载</a>
+                              position: absolute;
+                              text-shadow: 0 0px 0 #fff;
+                              " href="{{book['ctno']}}" target="_blank" role="button">下载</a>
                             </div>
                         </div>                 
                       {% endfor %}
@@ -63,8 +62,40 @@
                  
                   </div>
                </div>
-               {% include 'sidebar.html' %}
             </div>
+            <div class="row sidebar">
+                    <div class="widget col-md-3" >
+                        <h5 class="title">关注无术拾遗</h5>
+                        <div class="content ">
+                            <p>
+                              公众号将不定期分享优质书籍和学习资源。学而无术，拾遗补阙。持续学习，路虽远，行则将至 。共勉。
+                            </p> 
+                            <img src="https://harveyyeung.github.io/images/book1/icon/qrcode.jpg" style="width: 100%;">
+                        </div>
+                    </div>
+                    <div class=" col-md-1"></div>
+                     <div class="widget col-md-3">
+                        <h5 class="title">捐赠支持，您的支持最大动力</h5>
+                        <div class="content ">
+                                <img src="https://harveyyeung.github.io/images/book1/icon/pay.jpg" style="width: 100%;">
+                        </div>
+                    </div>
+                    <div class=" col-md-1"></div>
+                    <div class="widget col-md-3">
+                        <h5 class="title">PC电子书阅读器-calibre</h5>
+                        <div class="content text-center">
+                            <img src="https://harveyyeung.github.io/images/book1/icon/calibre.png" style="width: 100%;">
+                            <p>
+                            推荐大家一个牛逼的电子书阅读器calibre，几乎目前所有的电子书格式都能通杀，本人目前就在使用此软件阅读，而且支持各电子书格式转换。最重要的一点是免费，开源，还好用
+                            </p> 
+                            <a href="http://calibre-ebook.com/"  target="_blank" >calibre官网</a>
+                        </div>
+                        <div class="content download">
+                            <a href="https://jackmk.ctfile.com/fs/14155983-303170730" target="_blank"  class="btn btn-default btn-block" >window版下载</a>
+                            <a href="https://jackmk.ctfile.com/fs/14155983-303171156" target="_blank"  class="btn btn-default btn-block" >osx(mac)版下载</a>
+                        </div>
+                    </div>
+                </div>    
         </div>
     </section>
     {% include 'footer.html' %}

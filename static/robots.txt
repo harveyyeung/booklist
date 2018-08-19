@@ -1,0 +1,44 @@
+User-agent: Baiduspider
+Disallow: /static/
+Allow：/meetup
+Allow：/about
+
+User-agent: Googlebot
+Disallow: /static/
+Allow：/meetup
+Allow：/about
+
+User-agent: MSNBot
+Disallow: /static/
+Allow：/meetup
+Allow：/about
+
+User-agent: Baiduspider-image
+Disallow: /static/
+Allow：/meetup
+Allow：/about
+
+User-agent: YoudaoBot
+Disallow: /static/
+Allow：/meetup
+Allow：/about
+
+User-agent: Sogou spider2
+Disallow: /static/
+Allow：/meetup
+Allow：/about
+
+User-agent: Sogou blog
+Disallow: /static/
+Allow：/meetup
+Allow：/about
+
+User-agent: Sogou News Spider
+Disallow: /static/
+Allow：/meetup
+Allow：/about
+
+User-agent: *
+Disallow: /static/
+Allow：/meetup
+Allow：/about

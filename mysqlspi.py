@@ -36,37 +36,38 @@ def insert_bookinfo(bookinfo):
 
 def query_booklist(pageNum,qstr,cotegory):
     conn = connect_db()
-    startNum=(pageNum -1 ) *40
+    pageSize = 30
+    startNum=(pageNum -1 ) *pageSize
     cursor = conn.cursor(cursor=pymysql.cursors.DictCursor)
     if not qstr and not cotegory:
     #执行参数化查询
-        cursor.execute("select  bookinfo.*,fileinfo.ctno,fileinfo.formatid,total.totalnum from bookinfo,fileinfo,(SELECT count(uuid)  as totalnum from bookinfo where status=1) total where bookinfo.uuid=fileinfo.bookid and bookinfo.status=1 limit "+str(startNum)+",40")
+        cursor.execute("select  bookinfo.*,fileinfo.ctno,fileinfo.formatid,total.totalnum from bookinfo,fileinfo,(SELECT count(uuid)  as totalnum from bookinfo where status=1) total where bookinfo.uuid=fileinfo.bookid and bookinfo.status=1 limit "+str(startNum)+","+str(pageSize))
     
     elif  qstr and not cotegory:
-        cursor.execute("select  bookinfo.*,fileinfo.ctno,fileinfo.formatid,total.totalnum from bookinfo,fileinfo,(SELECT count(uuid)  as totalnum from bookinfo where status=1 and title like '%"+qstr+"%') total where bookinfo.uuid=fileinfo.bookid and bookinfo.status=1 and bookinfo.title like '%"+qstr+"%' limit "+str(startNum)+",40")   
+        cursor.execute("select  bookinfo.*,fileinfo.ctno,fileinfo.formatid,total.totalnum from bookinfo,fileinfo,(SELECT count(uuid)  as totalnum from bookinfo where status=1 and title like '%"+qstr+"%') total where bookinfo.uuid=fileinfo.bookid and bookinfo.status=1 and bookinfo.title like '%"+qstr+"%' limit "+str(startNum)+","+str(pageSize))   
     
     elif  not qstr and cotegory:
-        cursor.execute("select  bookinfo.*,fileinfo.ctno,fileinfo.formatid,total.totalnum from bookinfo,fileinfo,(SELECT count(uuid)  as totalnum from bookinfo where status=1  and cotegoryid = '"+cotegory+"' ) total where bookinfo.uuid=fileinfo.bookid and bookinfo.status=1 and bookinfo.cotegoryid = '"+cotegory+"'  limit "+str(startNum)+",40")
+        cursor.execute("select  bookinfo.*,fileinfo.ctno,fileinfo.formatid,total.totalnum from bookinfo,fileinfo,(SELECT count(uuid)  as totalnum from bookinfo where status=1  and cotegoryid = '"+cotegory+"' ) total where bookinfo.uuid=fileinfo.bookid and bookinfo.status=1 and bookinfo.cotegoryid = '"+cotegory+"'  limit "+str(startNum)+","+str(pageSize))
     
     else:
-        cursor.execute("select  bookinfo.*,fileinfo.ctno,fileinfo.formatid,total.totalnum from bookinfo,fileinfo,(SELECT count(uuid)  as totalnum from bookinfo where status=1 and title like '%"+qstr+"%'  and cotegoryid = '"+cotegory+"' ) total where bookinfo.uuid=fileinfo.bookid and bookinfo.status=1 and bookinfo.title like '%"+qstr+"%' and bookinfo.cotegoryid = '"+cotegory+"'   limit "+str(startNum)+",40")   
+        cursor.execute("select  bookinfo.*,fileinfo.ctno,fileinfo.formatid,total.totalnum from bookinfo,fileinfo,(SELECT count(uuid)  as totalnum from bookinfo where status=1 and title like '%"+qstr+"%'  and cotegoryid = '"+cotegory+"' ) total where bookinfo.uuid=fileinfo.bookid and bookinfo.status=1 and bookinfo.title like '%"+qstr+"%' and bookinfo.cotegoryid = '"+cotegory+"'   limit "+str(startNum)+","+str(pageSize))
     
 
     results = cursor.fetchall()
-    totalnum=17925
+    totalnum=0
     if(len(results)>0):
         totalnum=results[0]['totalnum']
     
-    pagetotal= totalnum // 40
+    pagetotal= totalnum // pageSize
     print(pagetotal)
-    if(totalnum % 40 > 0):
+    if(totalnum % pageSize > 0):
         pagetotal+=1 
 
     conn.commit()
     cursor.close()
     conn.close()
     return { 
-        "pageSize":40,
+        "pageSize":pageSize,
         "pageNum":pageNum,
         "total": pagetotal,
         "list": results

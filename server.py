@@ -3,7 +3,7 @@ from flask import Flask, session, redirect, url_for, render_template,request
 from optparse import OptionParser
 import re
 import mysqlspi
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', static_url_path='')
 
 @app.route('/')
 def hello_world():
@@ -46,6 +46,15 @@ if __name__ == '__main__':
     (opts, args) = parser.parse_args()
     # Load config file if specified
 
+
+    # parser.add_option('-l', '--listen', metavar='ADDRESS', dest='host',
+	# 			default='172.31.41.85',
+    #             help='address to listen on [127.0.0.1]')
+    # parser.add_option('-p', '--port', metavar='PORT', dest='port',
+    #             type='int', default=80,
+    #             help='port to listen on [80]')
+    # (opts, args) = parser.parse_args()
+    # Load config file if specified  parser.add_option('-l', '--listen', metavar='ADDRESS', dest='host',
     # Overwrite only those settings specified on the command line
     for k in dir(opts):
         if not k.startswith('_') and getattr(opts, k) is None:
